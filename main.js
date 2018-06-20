@@ -1,20 +1,21 @@
 !function(){
+    let duration = 20
     function writeCode(code,fn){
         let n =0
         let content = document.querySelector('#code')
         let styleTag = document.querySelector('#styleTag')
-        let id = setInterval(()=>{
+        setTimeout( function run(){
             n += 1
             content.innerHTML = code.substring(0,n)
             styleTag.innerHTML = code.substring(0,n)
             content.scrollTop = content.scrollHeight
-            if(n>=code.length){
-                window.clearInterval(id)
-                fn && fn.call() //如果你给我传了回调那么我就再调一下回调。
+            if(n<code.length){
+                setTimeout(run,duration)
             }
-        },50)
+                    // fn && fn.call() //如果你给我传了回调那么我就再调一下回调。
+        },duration)
     }
-    let code = `/*画个皮卡丘，首先是皮卡丘的皮*/
+    let code = ` /*我先写个默认的样式*/
     *{
         margin: 0;
         padding: 0;
@@ -26,6 +27,7 @@
     *::before{
         box-sizing: border-box;
     }
+    /*别急，马上就好了*/
     body{
         display: flex;
         flex-direction: column;
@@ -33,18 +35,21 @@
     }
     .code-wrapper{
         flex: 1;
-        height: 50%;
+        height: 30%;
+        background-color :#ddd;
     }
+    /*画个皮卡丘，首先是皮卡丘的皮*/
     .preview-wrapper{
         flex: 1;
-        height: 50%;
+        height: 70%;
     }
     .preview{
         height: 100%;
+        background-color: #FEE433;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #FEE433;
+   
     }
     .wrapper{
         width: 100%;
@@ -159,9 +164,21 @@
     `
     writeCode(code)
 
-    // $('.action').on('click','button',function(e){
-    //     let $button = $(e.currentTarget)
-    //     $($button).addClass('active').siblings().removeClass('active')
-    // })
+    $('.action').on('click','button',function(e){
+        let $button = $(e.currentTarget)
+        let speed = $button.attr('data-speed')
+        $($button).addClass('active').siblings('.active').removeClass('active')
+        switch(speed){
+            case 'slow':
+            duration = 50
+            break
+            case 'fast':
+            duration = 0
+            break
+            case 'normal':
+            duration = 20
+            break
+        }
+    })
 
 }.call()

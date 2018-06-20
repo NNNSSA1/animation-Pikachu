@@ -139,14 +139,13 @@ body{
 .action{
     position: absolute;
     top:0;
-    right: 0;
+    right: 45%;
     display: flex;
-    flex-direction: column;
 }
 .action>button{
     transition: all 0.3s;
     padding: 10px;
-    margin: 5px;
+    margin: 5px 20px;
     border: 1px solid #FC4A62;
     background-color: #FC4A62;
     border-radius: 5px; 
