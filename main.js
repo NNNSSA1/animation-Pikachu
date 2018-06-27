@@ -36,7 +36,7 @@
     .code-wrapper{
         flex: 1;
         height: 30%;
-        background-color :#ddd;
+        background-color : #f3f3f3;
     }
     /*画个皮卡丘，首先是皮卡丘的皮*/
     .preview-wrapper{
